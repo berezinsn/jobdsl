@@ -37,7 +37,7 @@ job('petclinic/Build-job') {
     }
     steps {
         // Secured docker registry authentication with bind credentials .
-        shell('docker login -u ${LOGIN} -p ${PASS} registry.ci-cd.ru:16000')
+        shell(readFileFromWorkspace('build/docker_login.sh'))
         // Generation of the file with the combined version.
         maven {
             goals('clean deploy -Pdocker -B')
