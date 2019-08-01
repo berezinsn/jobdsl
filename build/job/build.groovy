@@ -39,6 +39,11 @@ job('petclinic/Build-job') {
         // Secured docker registry authentication with bind credentials .
         shell(readFileFromWorkspace('build/shell/docker_login.sh'))
         // Generation of the file with the combined version.
+        shell(readFileFromWorkspace('build/shell/combined_version.sh'))
+        maven {
+            goals('versions:set')
+            property('newVersion', '${VERSION}')
+        }
         maven {
             goals('clean deploy -Pdocker -B')
         }

@@ -2,4 +2,3 @@ MAVEN_PROJECT_VERSION=$(mvn -q -Dexec.executable=echo -Dexec.args='${project.ver
 TIMESTAMP=$(date "+%Y%m%d.%H%M%S")
 GIT_HASH=$(git log -1 --pretty=%h)
 VERSION="${MAVEN_PROJECT_VERSION}-${TIMESTAMP}-${GIT_HASH}"
-echo ${VERSION}
