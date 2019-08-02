@@ -45,7 +45,7 @@ job('petclinic/Build-job') {
             propertiesContent('')
         }
         maven {
-            goals('versions:set')
+            goals('versions:set -B')
             property('newVersion', '${VERSION}')
         }
         maven {
