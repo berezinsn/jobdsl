@@ -40,6 +40,9 @@ job('petclinic/Build-job') {
         shell(readFileFromWorkspace('build/shell/docker_login.sh'))
         // Generation of the file with the combined version.
         shell(readFileFromWorkspace('build/shell/combined_version.sh'))
+        envInjectBuilder {
+            propertiesFilePath('env.properties')
+        }
         maven {
             goals('versions:set')
             property('newVersion', '${VERSION}')
