@@ -42,6 +42,7 @@ job('petclinic/Build-job') {
         shell(readFileFromWorkspace('build/shell/combined_version.sh'))
         envInjectBuilder {
             propertiesFilePath('env.properties')
+            propertiesContent('')
         }
         maven {
             goals('versions:set')
