@@ -5,6 +5,16 @@ job('petclinic/Build-branch') {
         colorizeOutput()
         timestamps()
         preBuildCleanup()
+        credentialsBinding {
+            usernamePassword {
+                // Name of an environment variable to be set to the username during the build.
+                usernameVariable('LOGIN')
+                // Name of an environment variable to be set to the password during the build.
+                passwordVariable('PASS')
+                // Credentials of an appropriate type to be set to the variable.
+                credentialsId('REGISTRY')
+            }
+        }
     }
     properties {
         githubProjectProperty {
