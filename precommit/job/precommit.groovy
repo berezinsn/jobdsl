@@ -6,6 +6,10 @@ job('petclinic/PR-build') {
         timestamps()
         preBuildCleanup()
     }
+    githubProjectProperty {
+        // Mandatory part
+        projectUrlStr('https://github.com/berezinsn/spring-petclinic/')
+    }
     scm {
         git {
             remote {
@@ -25,16 +29,16 @@ job('petclinic/PR-build') {
             permitAll()
             extensions {
                 commitStatus {
-                    triggeredStatus('starting deployment to staging site...')
-                    startedStatus('deploying to staging site...')
+                    triggeredStatus('Jenkins PR-build job has been triggered')
+                    startedStatus('Jenkins PR-build job is in progress now')
                     completedStatus('SUCCESS', 'All is well')
                     completedStatus('FAILURE', 'Something went wrong. Investigate!')
-                    completedStatus('PENDING', 'still in progress...')
+                    completedStatus('PENDING', 'Still in progress...')
                     completedStatus('ERROR', 'Something went really wrong. Investigate!')
                 }
                 buildStatus {
                     completedStatus('SUCCESS', 'There were no errors, go have a cup of coffee...')
-                    completedStatus('FAILURE', 'There were errors, for info, please see...')
+                    completedStatus('FAILURE', 'There were errors, for info, please check the Jenkins job')
                     completedStatus('ERROR', 'There was an error in the infrastructure, please contact...')
                 }
             }
