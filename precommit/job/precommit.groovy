@@ -47,6 +47,15 @@ job('petclinic/PR-build') {
         }
     }
     steps {
+        shell(readFileFromWorkspace('build/shell/combined_version.sh'))
+        envInjectBuilder {
+            propertiesFilePath('env.properties')
+            propertiesContent('')
+        }
+        maven {
+            goals('versions:set -B')
+            property('newVersion', '${VERSION}')
+        }
         maven {
             goals('clean install -B')
         }
