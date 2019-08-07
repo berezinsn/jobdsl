@@ -6,10 +6,10 @@ job('petclinic/PR-build') {
         timestamps()
         preBuildCleanup()
     }
-    githubProjectProperty {
-        // Mandatory part
-        projectUrlStr('https://github.com/berezinsn/spring-petclinic/')
-    }
+    githubProjectProperty(
+            // Mandatory part
+            projectUrlStr('https://github.com/berezinsn/spring-petclinic/')
+    )
     scm {
         git {
             remote {
