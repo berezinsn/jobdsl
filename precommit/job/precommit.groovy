@@ -24,9 +24,6 @@ job('petclinic/PR-build') {
             useGitHubHooks()
             permitAll()
             extensions {
-                commentFilePath {
-                    commentFilePath("relative/path/to/file")
-                }
                 commitStatus {
                     context('deploy to staging site')
                     triggeredStatus('starting deployment to staging site...')
