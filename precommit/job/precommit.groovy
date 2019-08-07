@@ -39,21 +39,10 @@ job('petclinic/PR-build') {
                 }
             }
         }
-        steps {
-            // Secured docker registry authentication with bind credentials .
-//        shell(readFileFromWorkspace('build/shell/docker_login.sh'))
-            // Generation of the file with the combined version.
-//        shell(readFileFromWorkspace('build/shell/combined_version.sh'))
-//        envInjectBuilder {
-//            propertiesFilePath('env.properties')
-//            propertiesContent('')
-//        }
-//        maven {
-//            goals('versions:set -B')
-//            property('newVersion', '${VERSION}')
-//        }
-            maven {
-                goals('clean deploy -Pdocker -B')
-            }
+    }
+    steps {
+        maven {
+            goals('clean install -B')
         }
     }
+}
