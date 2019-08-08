@@ -1,4 +1,4 @@
-job('petclinic/PR-build') {
+job('petclinic/Build-PR') {
     label('slave')
     wrappers {
         maskPasswords()

@@ -3,7 +3,7 @@ folder('petclinic') {
     description('Folder for petclinic CI/CD jobs')
 }
 
-job('petclinic/Build-job') {
+job('petclinic/Build-Dev') {
     label('slave')
     wrappers {
         maskPasswords()
