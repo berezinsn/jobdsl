@@ -26,7 +26,7 @@ job('petclinic/Build-Dev') {
             remote {
                 url('https://github.com/berezinsn/spring-petclinic.git')
             }
-            branch('master')
+            branch('develop')
             extensions {
                 wipeOutWorkspace()
             }
@@ -37,9 +37,9 @@ job('petclinic/Build-Dev') {
     }
     steps {
         // Secured docker registry authentication with bind credentials .
-        shell(readFileFromWorkspace('build/shell/docker_login.sh'))
+        shell(readFileFromWorkspace('shell/docker_login.sh'))
         // Generation of the file with the combined version.
-        shell(readFileFromWorkspace('build/shell/combined_version.sh'))
+        shell(readFileFromWorkspace('shell/combined_version.sh'))
         envInjectBuilder {
             propertiesFilePath('env.properties')
             propertiesContent('')

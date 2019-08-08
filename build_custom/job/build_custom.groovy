@@ -45,9 +45,9 @@ job('petclinic/Build-Custom') {
     }
     steps {
         // Secured docker registry authentication with bind credentials .
-        shell(readFileFromWorkspace('build/shell/docker_login.sh'))
+        shell(readFileFromWorkspace('shell/docker_login.sh'))
         // Generation of the file with the combined version.
-        shell(readFileFromWorkspace('build/shell/combined_version.sh'))
+        shell(readFileFromWorkspace('shell/combined_version.sh'))
         envInjectBuilder {
             propertiesFilePath('env.properties')
             propertiesContent('')
