@@ -34,6 +34,7 @@ job('petclinic/Create-Release-Branch') {
             goals('-B release:clean release:branch')
             property('branchName', 'release-2.0')
             property('developmentVersion', '2.0.0-SNAPSHOT')
+            property('username', 'berezinsn')
         }
         maven {
             goals('clean install -B')
