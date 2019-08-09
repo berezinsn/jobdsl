@@ -21,7 +21,7 @@ job('petclinic/Build-Release') {
             remote {
                 url('https://github.com/berezinsn/spring-petclinic.git')
             }
-            branch('develop')
+            branch('dev')
             extensions {
                 wipeOutWorkspace()
             }
