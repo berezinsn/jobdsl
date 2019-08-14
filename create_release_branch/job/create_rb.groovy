@@ -10,16 +10,17 @@ job('petclinic/Create-Release-Branch') {
     properties {
         githubProjectProperty {
             // Mandatory part
-            projectUrlStr('https://github.com/berezinsn/spring-petclinic')
+            projectUrlStr('https://github.com/berezinsn/spring-petclinic.git')
         }
     }
     scm {
         git {
             remote {
-                url('https://github.com/berezinsn/spring-petclinic.git')
+                url('git@github.com:berezinsn/spring-petclinic.git')
+                // Mandatory part
                 credentials('GIT_SSH')
             }
-            branch('dev')
+            branch('*/dev')
             configure { node ->
                 node / 'extensions' << 'hudson.plugins.git.extensions.impl.LocalBranch' {
                     localBranch('dev')
