@@ -1,8 +1,3 @@
-folder('petclinic') {
-    displayName('Petclinic CI/CD')
-    description('Folder for petclinic CI/CD jobs')
-}
-
 job('petclinic/Build-Dev') {
     label('slave')
     wrappers {

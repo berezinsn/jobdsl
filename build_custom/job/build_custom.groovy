@@ -1,3 +1,8 @@
+folder('petclinic') {
+    displayName('Petclinic CI/CD')
+    description('Folder for petclinic CI/CD jobs')
+}
+
 job('petclinic/Build-Custom') {
     label('slave')
     wrappers {
