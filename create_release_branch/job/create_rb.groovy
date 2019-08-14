@@ -16,8 +16,8 @@ job('petclinic/Create-Release-Branch') {
     scm {
         git {
             remote {
-                url('git@github.com:berezinsn/spring-petclinic.git')
                 // Mandatory part
+                url('git@github.com:berezinsn/spring-petclinic.git')
                 credentials('GIT_SSH')
             }
             branch('*/dev')
@@ -42,9 +42,6 @@ job('petclinic/Create-Release-Branch') {
             goals('-B release:clean release:branch')
             property('branchName', '${BRANCH_NAME}')
             property('developmentVersion', '${DEVELOPMENT_VERSION}')
-        }
-        maven {
-            goals('clean install -B')
         }
     }
 }
