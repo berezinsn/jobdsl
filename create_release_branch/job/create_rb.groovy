@@ -17,6 +17,7 @@ job('petclinic/Create-Release-Branch') {
         git {
             remote {
                 url('https://github.com/berezinsn/spring-petclinic.git')
+                credentials('GIT_SSH')
             }
             branch('dev')
             configure { node ->
