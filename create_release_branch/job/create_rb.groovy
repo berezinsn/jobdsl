@@ -31,6 +31,7 @@ job('petclinic/Create-Release-Branch') {
                     name('dev')
                 }
             }
+        }
     }
     steps {
         shell(readFileFromWorkspace('shell/git_config.sh'))
