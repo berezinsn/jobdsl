@@ -47,7 +47,7 @@ job('petclinic/Build-PR') {
         }
     }
     steps {
-        shell(readFileFromWorkspace('shell/combined_version.sh'))
+        shell(readFileFromWorkspace('shell/build_version.sh'))
         envInjectBuilder {
             propertiesFilePath('env.properties')
             propertiesContent('')
