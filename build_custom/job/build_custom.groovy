@@ -31,7 +31,7 @@ job('petclinic/Build-Custom') {
         gitParam('BRANCH') {
             description('Custom branch parameter')
             type('BRANCH')
-            defaultValue('master')
+            defaultValue('dev')
         }
     }
     scm {
