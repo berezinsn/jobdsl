@@ -20,15 +20,12 @@ job('petclinic/Create-Release-Branch') {
                 url('https://github.com/berezinsn/spring-petclinic.git')
             }
             branch('dev')
-            extensions {
-                wipeOutWorkspace()
-            }
-        }
-        gitSCM {
-            branches {
-                branchSpec {
-                    // Specific branch in a repository.
-                    name('dev')
+            configure { node ->
+                node / 'extensions' << 'hudson.plugins.git.extensions.impl.LocalBranch' {
+                    localBranch('dev')
+                    extensions {
+                        wipeOutWorkspace()
+                    }
                 }
             }
         }
