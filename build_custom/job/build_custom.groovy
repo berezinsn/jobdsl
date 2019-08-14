@@ -45,9 +45,9 @@ job('petclinic/Build-Custom') {
             }
         }
     }
-    triggers {
-        scm('H/15 * * * *')
-    }
+ //   triggers {
+ //       scm('H/15 * * * *')
+//    }
     steps {
         // Secured docker registry authentication with bind credentials .
         shell(readFileFromWorkspace('shell/docker_login.sh'))
