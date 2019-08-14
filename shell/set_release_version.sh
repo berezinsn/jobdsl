@@ -1,2 +1,0 @@
-RELEASE_VERSION=release-$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec | sed 's/[a-zA-Z<>\/-]//g;s/[.]*$//' | head -c 3)
-echo "RELEASE_VERSION=${RELEASE_VERSION}" >> env.properties
