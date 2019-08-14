@@ -1,7 +1,7 @@
 job('petclinic/Create-Release-Branch') {
     label('slave')
     wrappers {
-        sshAgent('git')
+        sshAgent('GIT_SSH')
         maskPasswords()
         colorizeOutput()
         timestamps()
