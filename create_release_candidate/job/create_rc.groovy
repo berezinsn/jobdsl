@@ -24,9 +24,5 @@ job('petclinic/Create-Release-Candidate') {
         shell(readFileFromWorkspace('shell/docker_login.sh'))
         // Generation of the file with the combined version.
         shell(readFileFromWorkspace('shell/create_rc.sh'))
-        envInjectBuilder {
-            propertiesFilePath('env.properties')
-            propertiesContent('')
-        }
     }
 }
