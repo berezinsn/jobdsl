@@ -27,9 +27,9 @@ job('petclinic/Build-Release') {
             remote {
                 credentials('GIT')
                 url('https://github.com/berezinsn/spring-petclinic.git')
-                refspec('+refs/pull/*:refs/remotes/origin/release-*.*')
+                refspec('+refs/heads/*:refs/remotes/origin/*')
             }
-            branch('${sha1}')
+            branch('*/release-*.*')
             extensions {
                 wipeOutWorkspace()
             }
