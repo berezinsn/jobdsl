@@ -1,3 +1,3 @@
-git config --global user.name "berezinsn"
-git config --global user.email "update.berezin@gmail.com"
-git remote set-url origin git@github.com:berezinsn/spring-petclinic.git
+git config --global user.name "${GIT_USER}"
+git config --global user.email "${GIT_USER_MAIL}"
+git remote set-url origin ${CONNECTION_STRING}

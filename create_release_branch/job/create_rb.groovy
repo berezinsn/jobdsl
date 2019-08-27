@@ -31,6 +31,12 @@ job('petclinic/Create-Release-Branch') {
             }
         }
     }
+    environmentVariables {
+        // Change this values up to your personal user and mail
+        env('GIT_USER', 'berezinsn')
+        env('GIT_USER_MAIL', 'update.berezin@gmial.com')
+        env('CONNECTION_STRING', 'git@github.com:berezinsn/spring-petclinic.git')
+    }
     steps {
         shell(readFileFromWorkspace('shell/git_config.sh'))
         shell(readFileFromWorkspace('shell/release_versions.sh'))
