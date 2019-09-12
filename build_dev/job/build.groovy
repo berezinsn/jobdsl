@@ -20,7 +20,7 @@ job('petclinic/Build-Dev') {
         promotions {
             promotion {
                 name('Create release branch')
-                label('slave')
+                restrict('slave')
                 actions {
                     downstreamParameterized {
                         trigger('Create-Release-Branch')
