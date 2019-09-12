@@ -19,9 +19,16 @@ job('petclinic/Build-Dev') {
     properties {
         promotions {
             promotion {
-                name('Development')
-                conditions {
-                    manual('testuser')
+                name('Create release branch')
+                actions {
+                    downstreamParameterized {
+                        trigger('Create-Release-Branch') {
+                            parameters {
+                                gitRevisionBuildParameters {
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
