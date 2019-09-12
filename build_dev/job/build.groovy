@@ -68,7 +68,7 @@ job('petclinic/Build-Dev') {
             goals('clean deploy -Pdocker -B')
         }
     }
-    postBuildPublishers {
+    publishers {
         archiveArtifacts {
             pattern('env.properties')
         }
