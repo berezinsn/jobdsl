@@ -1,8 +1,5 @@
 job('petclinic/Build-Dev') {
     label('slave')
- //   publishers {
- //       archiveArtifacts('env.properties')
- //   }
     wrappers {
         maskPasswords()
         colorizeOutput()
@@ -19,19 +16,12 @@ job('petclinic/Build-Dev') {
             }
         }
     }
-    promotions {
-        promotion("Development") {
-            icon("star-red")
-            conditions {
-                manual('')
-            }
-            actions {
-                downstreamParameterized {
-                    trigger("deploy-application", "SUCCESS", false, ["buildStepFailure": "FAILURE", "failure": "FAILURE", "unstable": "UNSTABLE"]) {
-                        predefinedProp("ENVIRONMENT", "test-server")
-                        predefinedProp("APPLICATION_NAME", "\${PROMOTED_JOB_FULL_NAME}")
-                        predefinedProp("BUILD_ID", "\${PROMOTED_NUMBER}")
-                    }
+    properties {
+        promotions {
+            promotion {
+                name('Development')
+                conditions {
+                    manual('testuser')
                 }
             }
         }
@@ -66,5 +56,8 @@ job('petclinic/Build-Dev') {
         maven {
             goals('clean deploy -Pdocker -B')
         }
+    }
+    publishers {
+        archiveArtifacts('env.properties')
     }
 }
