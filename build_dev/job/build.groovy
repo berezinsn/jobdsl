@@ -19,22 +19,18 @@ job('petclinic/Build-Dev') {
             }
         }
     }
-    properties {
-        promotions {
-            promotion {
-                name('Create release branch')
-                conditions {
-                    manual('')
-                }
-                actions {
-                    downstreamParameterized {
-                        trigger('Create-Release-Branch'){
-                            parameters{
-                                gitRevisionBuildParameters {
-                                    combineQueuedCommits(false)
-                                }
-                            }
-                        }
+    promotions {
+        promotion("Development") {
+            icon("star-red")
+            conditions {
+                manual('')
+            }
+            actions {
+                downstreamParameterized {
+                    trigger("deploy-application", "SUCCESS", false, ["buildStepFailure": "FAILURE", "failure": "FAILURE", "unstable": "UNSTABLE"]) {
+                        predefinedProp("ENVIRONMENT", "test-server")
+                        predefinedProp("APPLICATION_NAME", "\${PROMOTED_JOB_FULL_NAME}")
+                        predefinedProp("BUILD_ID", "\${PROMOTED_NUMBER}")
                     }
                 }
             }
