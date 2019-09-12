@@ -1,5 +1,8 @@
 job('petclinic/Build-Dev') {
     label('slave')
+    publishers {
+        archiveArtifacts('env.properties')
+    }
     wrappers {
         maskPasswords()
         colorizeOutput()
@@ -66,11 +69,6 @@ job('petclinic/Build-Dev') {
         }
         maven {
             goals('clean deploy -Pdocker -B')
-        }
-    }
-    publishers {
-        archiveArtifacts {
-            pattern('env.properties')
         }
     }
 }
