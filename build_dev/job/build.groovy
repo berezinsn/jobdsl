@@ -1,8 +1,8 @@
 job('petclinic/Build-Dev') {
     label('slave')
-    publishers {
-        archiveArtifacts('env.properties')
-    }
+ //   publishers {
+ //       archiveArtifacts('env.properties')
+ //   }
     wrappers {
         maskPasswords()
         colorizeOutput()
