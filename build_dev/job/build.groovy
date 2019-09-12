@@ -23,7 +23,11 @@ job('petclinic/Build-Dev') {
                 restrict('slave')
                 actions {
                     downstreamParameterized {
-                        trigger('Create-Release-Branch')
+                        trigger('Create-Release-Branch') {
+                            parameters {
+                                gitRevision(combineQueuedCommits = false)
+                            }
+                        }
                     }
                 }
             }
