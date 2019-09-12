@@ -47,4 +47,18 @@ job('petclinic/Build-Dev') {
             goals('clean deploy -Pdocker -B')
         }
     }
+    //test of the promotion description
+    promotions("") {
+        promotion("Development") {
+            icon("star-red")
+            conditions {
+                manual('')
+            }
+        }
+    }
+    postBuildPublishers {
+        archiveArtifacts {
+            pattern('env.properties')
+        }
+    }
 }
