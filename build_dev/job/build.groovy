@@ -28,6 +28,7 @@ job('petclinic/Build-Dev') {
                         trigger('Create-Release-Branch'){
                             parameters{
                                 gitRevisionBuildParameters {
+                                    combineQueuedCommits(false)
                                 }
                             }
                         }
