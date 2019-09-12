@@ -23,13 +23,7 @@ job('petclinic/Build-Dev') {
                 label('slave')
                 actions {
                     downstreamParameterized {
-                        trigger('Create-Release-Branch'){
-                            parameters{
-                                gitRevisionBuildParameters {
-                                    combineQueuedCommits(false)
-                                }
-                            }
-                        }
+                        trigger('Create-Release-Branch')
                     }
                 }
             }
