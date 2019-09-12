@@ -20,11 +20,13 @@ job('petclinic/Build-Dev') {
         promotions {
             promotion {
                 name('Create release branch')
+                label('slave')
                 actions {
                     downstreamParameterized {
-                        trigger('Create-Release-Branch') {
-                            parameters {
+                        trigger('Create-Release-Branch'){
+                            parameters{
                                 gitRevisionBuildParameters {
+                                    combineQueuedCommits(false)
                                 }
                             }
                         }
