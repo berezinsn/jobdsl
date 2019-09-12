@@ -16,6 +16,26 @@ job('petclinic/Build-Dev') {
             }
         }
     }
+    properties {
+        promotions {
+            promotion {
+                name('Create release branch')
+                conditions {
+                    manual('')
+                }
+                actions {
+                    downstreamParameterized {
+                        trigger('Create-Release-Branch'){
+                            parameters{
+                                gitRevisionBuildParameters {
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
     scm {
         git {
             remote {
@@ -45,15 +65,6 @@ job('petclinic/Build-Dev') {
         }
         maven {
             goals('clean deploy -Pdocker -B')
-        }
-    }
-    //test of the promotion description
-    promotions("") {
-        promotion("Development") {
-            icon("star-red")
-            conditions {
-                manual('')
-            }
         }
     }
     postBuildPublishers {
