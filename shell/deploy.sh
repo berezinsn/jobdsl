@@ -11,4 +11,4 @@ kubectl get pods
 curl -X GET -u ${LOGIN}:${PASS} https://nexus.ci-cd.ru/repository/tgz/${VERSION} -O
 helm init --client-only
 helm install ${VERSION}
-sleep 60 && echo Public IP $(kubectl get svc | grep haproxy | awk '{print $4}'):443
+sleep 60 && echo Endpoint link: https://$(kubectl get svc | grep haproxy | awk '{print $4}'):443
