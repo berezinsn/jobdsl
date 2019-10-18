@@ -27,50 +27,52 @@ job('petclinic/Build-Release') {
                 restrict('slave')
                 actions {
                     copyArtifacts('${PROMOTED_JOB_FULL_NAME}') {
-                        specific {
-                            buildNumber('${PROMOTED_NUMBER}')
+                        buildSelector {
+                            specific {
+                                buildNumber('${PROMOTED_NUMBER}')
+                            }
                         }
-                        includePatterns('env.properties')
-                    }
-                    downstreamParameterized {
-                        trigger('Create-Release-Branch') {
+                            includePatterns('env.properties')
+                        }
+                        downstreamParameterized {
+                            trigger('Create-Release-Branch') {
+                            }
                         }
                     }
                 }
             }
         }
-    }
-    scm {
-        git {
-            remote {
-                credentials('GIT')
-                url('https://github.com/berezinsn/spring-petclinic.git')
-                refspec('+refs/heads/*:refs/remotes/origin/*')
+        scm {
+            git {
+                remote {
+                    credentials('GIT')
+                    url('https://github.com/berezinsn/spring-petclinic.git')
+                    refspec('+refs/heads/*:refs/remotes/origin/*')
+                }
+                branch('*/release-*.*')
+                extensions {
+                    wipeOutWorkspace()
+                }
             }
-            branch('*/release-*.*')
-            extensions {
-                wipeOutWorkspace()
+        }
+        triggers {
+            scm('H/15 * * * *')
+        }
+        steps {
+            // Secured docker registry authentication with bind credentials .
+            shell(readFileFromWorkspace('shell/docker_login.sh'))
+            // Generation of the file with the combined version.
+            shell(readFileFromWorkspace('shell/build_version.sh'))
+            envInjectBuilder {
+                propertiesFilePath('env.properties')
+                propertiesContent('')
+            }
+            maven {
+                goals('versions:set -B')
+                property('newVersion', '${VERSION}')
+            }
+            maven {
+                goals('clean deploy -Pdocker -B')
             }
         }
     }
-    triggers {
-        scm('H/15 * * * *')
-    }
-    steps {
-        // Secured docker registry authentication with bind credentials .
-        shell(readFileFromWorkspace('shell/docker_login.sh'))
-        // Generation of the file with the combined version.
-        shell(readFileFromWorkspace('shell/build_version.sh'))
-        envInjectBuilder {
-            propertiesFilePath('env.properties')
-            propertiesContent('')
-        }
-        maven {
-            goals('versions:set -B')
-            property('newVersion', '${VERSION}')
-        }
-        maven {
-            goals('clean deploy -Pdocker -B')
-        }
-    }
-}
