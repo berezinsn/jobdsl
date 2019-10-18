@@ -21,6 +21,24 @@ job('petclinic/Build-Release') {
             // Mandatory part
             projectUrlStr('https://github.com/berezinsn/spring-petclinic/')
         }
+        promotions {
+            promotion {
+                name('Create release candidate')
+                restrict('slave')
+                actions {
+                    downstreamParameterized {
+                        trigger('Create-Release-Branch') {
+                            copyArtifacts('${PROMOTED_JOB_FULL_NAME}') {
+                                specific {
+                                    buildNumber('${PROMOTED_NUMBER}')
+                                }
+                                includePatterns('env.properties')
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     scm {
         git {
