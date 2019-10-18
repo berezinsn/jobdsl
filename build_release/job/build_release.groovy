@@ -28,7 +28,7 @@ job('petclinic/Build-Release') {
                 actions {
                     downstreamParameterized {
                         trigger('Create-Release-Branch') {
-                            copyArtifacts('${PROMOTED_JOB_FULL_NAME}') {
+                            copyArtifacts(${PROMOTED_JOB_FULL_NAME}) {
                                 specific {
                                     buildNumber('${PROMOTED_NUMBER}')
                                 }
