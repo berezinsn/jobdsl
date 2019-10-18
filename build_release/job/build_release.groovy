@@ -79,4 +79,7 @@ job('petclinic/Build-Release') {
             goals('clean deploy -Pdocker -B')
         }
     }
+    publishers {
+        archiveArtifacts('env.properties')
+    }
 }
