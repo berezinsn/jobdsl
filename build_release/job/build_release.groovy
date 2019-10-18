@@ -36,7 +36,7 @@ job('petclinic/Build-Release') {
                         }
                     }
                     downstreamParameterized {
-                        trigger('Create-Release-Branch') {
+                        trigger('Create-Release-Candidate') {
                             parameters {
                                 propertiesFile('env.properties')
                             }
