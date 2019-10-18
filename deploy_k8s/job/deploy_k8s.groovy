@@ -17,7 +17,7 @@ job('petclinic/Deploy-K8S') {
         }
     }
     parameters {
-        stringParam('VERSION', '', 'HELM-chart version')
+        stringParam('VERSION', 'petclinic-helm-0.1.0.tgz', 'HELM-chart version')
     }
     steps {
         // Deployment script .
