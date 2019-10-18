@@ -26,14 +26,14 @@ job('petclinic/Build-Release') {
                 name('Create release candidate')
                 restrict('slave')
                 actions {
+                    copyArtifacts('${PROMOTED_JOB_FULL_NAME}') {
+                        specific {
+                            buildNumber('${PROMOTED_NUMBER}')
+                        }
+                        includePatterns('env.properties')
+                    }
                     downstreamParameterized {
                         trigger('Create-Release-Branch') {
-                            copyArtifacts(${PROMOTED_JOB_FULL_NAME}) {
-                                specific {
-                                    buildNumber('${PROMOTED_NUMBER}')
-                                }
-                                includePatterns('env.properties')
-                            }
                         }
                     }
                 }
