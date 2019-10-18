@@ -25,17 +25,21 @@ job('petclinic/Build-Release') {
             promotion {
                 name('Create release candidate')
                 restrict('slave')
+                conditions {
+                    manual('')
+                }
                 actions {
                     copyArtifacts('${PROMOTED_JOB_FULL_NAME}') {
                         includePatterns('env.properties')
-                        selector {
-                            specific {
-                                buildNumber('${PROMOTED_NUMBER}')
-                            }
+                        buildSelector {
+                            buildNumber('${PROMOTED_NUMBER}')
                         }
                     }
                     downstreamParameterized {
                         trigger('Create-Release-Branch') {
+                            parameters {
+                                propertiesFile('env.properties')
+                            }
                         }
                     }
                 }
